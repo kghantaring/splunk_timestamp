@@ -1,0 +1,13 @@
+- hosts: hf
+  gather_facts: True
+  become: True
+  become_method: sudo
+  remote_user: ubuntu
+  tasks:
+  - name: copu
+    copy:
+      src:
+      dest: /tmp/bar
+      owner: splunk
+      group: splunk
+      mode: 0644

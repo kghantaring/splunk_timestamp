@@ -1,0 +1,13 @@
+[hf]
+172.31.84.246
+
+[hf:vars]
+ansible_ssh_user=ubuntu
+
+
+[uf]
+172.31.28.156
+
+[uf:vars]
+ansible_ssh_user=ubuntu
+
