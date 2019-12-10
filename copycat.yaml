@@ -1,4 +1,4 @@
-- hosts: all
+hosts: uf
   gather_facts: True
   become: True
   become_method: sudo
@@ -10,7 +10,23 @@
         owner: splunk
         group: splunk
         mode: 0755
-    - name: perform rolling restart on UFs
-      shell: /opt/splunkforwarder/bin/splunk stop && sleep 10 && /opt/splunkforwarder/bin/splunk start
+    - name: perform restart on UFs
+      shell: /opt/splunkforwarder/bin/splunk restart
+      become: true
+      become_user: splunk
+- hosts: hf
+  gather_facts: True
+  become: True
+  become_method: sudo
+  remote_user: ubuntu
+  tasks:
+    - copy:
+        src: /home/ubuntu/myplatform/datetime.xml
+        dest: /opt/splunk/etc/
+        owner: splunk
+        group: splunk
+        mode: 0755
+    - name: perform  restart on HFs
+      shell: /opt/splunk/bin/splunk restart
       become: true
       become_user: splunk
